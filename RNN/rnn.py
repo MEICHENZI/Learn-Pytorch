@@ -51,7 +51,7 @@ output_b, h_n = bidirectional_rnn(input)
 # print(h_n.shape) torch.Size([2, 1, 3])
 # print(h_n)
 
-#手动实现
+
 
 
 
