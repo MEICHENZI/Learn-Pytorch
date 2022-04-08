@@ -37,27 +37,33 @@ h_n(The output of the last layer):tensor([[[ 0.8546,  0.2835, -0.1296]]], grad_f
 
 '''
 output, h_n = single_rnn(input)
-# print(output,'\n')
-# print(h_n)
+print(output,'\n')
+print(h_n)
+print('----------')
 # print(output.shape)torch.Size([1, 2, 3])
 # print(h_n.shape)torch.Size([1, 1, 3])
 #双向RNN,单层
 bidirectional_rnn = nn.RNN(4,3,1, batch_first=True,bidirectional=True)
 output_b, h_n = bidirectional_rnn(input)
 # bidirectional_rnn: hidden_size * 2
-print(output_b)
+# print(output_b)
 # print(output_b.shape) torch.Size([1, 2, 6])
 # print(h_n.shape) torch.Size([2, 1, 3])
-print(h_n)
+# print(h_n)
 
 #手动实现
-batch_size, T = 2, 3
-input_size, hidden_size = 2, 3
-input_x = torch.randn(batch_size, T, input_size)
-h_prev = torch.zeros(batch_size, hidden_size)
 
-#rnn forward
-def rnn_forward(input, weight_ih, bias, weight_hh, bias_hh, h_prev):
+
+
+
+
+
+
+
+
+
+
+
 
 
 
