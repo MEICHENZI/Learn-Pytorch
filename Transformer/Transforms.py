@@ -67,16 +67,17 @@ pe_embedding_table = torch.zeros(max_position_len, model_dim)
 pe_embedding_table[:,0::2] = torch.sin(pos_mat / i_mat)
 pe_embedding_table[:,1::2] = torch.cos(pos_mat / i_mat)
 
+# print('pe',pe_embedding_table)
 pe_embedding = nn.Embedding(max_position_len,model_dim)
-
+# print(pe_embedding.weight)
 pe_embedding.weight = nn.Parameter(pe_embedding_table, requires_grad=False)
 
-src_pos = torch.cat([torch.unsqueeze(torch.arange(max(src_len)),0) for _ in src_len]).to(torch.int32)
-tgt_pos = torch.cat([torch.unsqueeze(torch.arange(max(tgt_len)),0) for _ in tgt_len]).to(torch.int32)
-
+src_pos = torch.cat([torch.unsqueeze(torch.arange(max_position_len),0) for _ in src_len]).to(torch.int32)
+tgt_pos = torch.cat([torch.unsqueeze(torch.arange(max_position_len),0) for _ in tgt_len]).to(torch.int32)
+# print(src_pos)
 src_pe_embedding = pe_embedding(src_pos)
 tgt_pe_embedding = pe_embedding(tgt_pos)
-# print(src_pe_embedding)
+print(src_pe_embedding)
 
 
 # Encoder_Muti_Head_Attention
@@ -170,7 +171,7 @@ tgt_lens = torch.Tensor([2,3]).to(torch.int32)
 mask = torch.cat([torch.unsqueeze(F.pad(torch.ones(L),(0, max(tgt_lens) - L)),0) for L in tgt_len])
 
 loss = F.cross_entropy(logits, lable, reduction='none') * mask
-print(loss)
+# print(loss)
 
 
 
